@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guild Officer Application</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style id="gate-style">body { visibility: hidden; }</style>
   <style>
     :root { --gold: #c9a84c; --gold-light: #f0d080; --gold-dim: #7a6128; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,22 +36,44 @@
     .signature .name { font-family: 'Cinzel Decorative', serif; font-size: 15px; color: var(--gold); letter-spacing: 0.05em; }
     .signature .title-line { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.25em; color: var(--gold-dim); text-transform: uppercase; margin-top: 4px; }
     @media (max-width: 520px) { .scroll { padding: 36px 28px; } .scroll::before, .scroll::after { margin: 0 -28px; } .traits { grid-template-columns: 1fr; } h1 { font-size: 20px; } }
+    #oh-gate { position: fixed; inset: 0; background: #0a0804; display: flex; align-items: center; justify-content: center; z-index: 9999; font-family: Georgia, serif; visibility: visible; }
   </style>
-</head>
-<body>
   <script>
     (function() {
       var c = 'OuterHaven', k = 'oh_auth';
-      if (sessionStorage.getItem(k) === c) return;
-      document.addEventListener('DOMContentLoaded', function() { document.body.style.display = 'none'; });
-      var o = document.createElement('div');
-      o.style.cssText = 'position:fixed;inset:0;background:#0a0804;display:flex;align-items:center;justify-content:center;z-index:9999;font-family:Georgia,serif;';
-      o.innerHTML = '<div style="text-align:center;border:1px solid #7a6128;padding:48px 56px;background:linear-gradient(160deg,#1e1508,#130e05);box-shadow:0 0 0 4px #0a0804,0 0 0 5px #7a6128,0 0 60px rgba(201,168,76,0.1);max-width:360px;width:90%;"><div style="font-size:36px;margin-bottom:16px;">&#x1F6E1;</div><div style="font-size:10px;letter-spacing:0.35em;color:#7a6128;text-transform:uppercase;margin-bottom:12px;">Outer Haven</div><div style="font-size:18px;color:#f0d080;margin-bottom:28px;">Speak the Passphrase</div><input id="pw" type="password" placeholder="Enter passphrase" style="width:100%;padding:10px 14px;background:#0d0a06;border:1px solid #7a6128;color:#c9a84c;font-size:15px;text-align:center;outline:none;margin-bottom:12px;box-sizing:border-box;" /><div id="pe" style="color:#8b1a1a;font-size:12px;min-height:18px;margin-bottom:10px;"></div><button onclick="cp()" style="width:100%;padding:10px;background:transparent;border:1px solid #c9a84c;color:#c9a84c;font-size:13px;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;">Enter</button></div>';
-      document.body.appendChild(o);
-      document.getElementById('pw').addEventListener('keydown', function(e){ if(e.key==='Enter') cp(); });
-      window.cp = function() { var v=document.getElementById('pw').value; if(v===c){sessionStorage.setItem(k,c);o.remove();document.body.style.display='';}else{document.getElementById('pe').textContent='The gates remain sealed. Try again.';document.getElementById('pw').value='';document.getElementById('pw').focus();} };
+      if (sessionStorage.getItem(k) === c) {
+        document.getElementById('gate-style').textContent = '';
+        return;
+      }
+      window.checkPw = function() {
+        var v = document.getElementById('pw').value;
+        if (v === c) {
+          sessionStorage.setItem(k, c);
+          document.getElementById('oh-gate').remove();
+          document.getElementById('gate-style').textContent = '';
+        } else {
+          document.getElementById('pe').textContent = 'The gates remain sealed. Try again.';
+          document.getElementById('pw').value = '';
+          document.getElementById('pw').focus();
+        }
+      };
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && document.getElementById('pw')) checkPw();
+      });
     })();
   </script>
+</head>
+<body>
+  <div id="oh-gate">
+    <div style="text-align:center;border:1px solid #7a6128;padding:48px 56px;background:linear-gradient(160deg,#1e1508,#130e05);box-shadow:0 0 0 4px #0a0804,0 0 0 5px #7a6128,0 0 60px rgba(201,168,76,0.1);max-width:360px;width:90%;">
+      <div style="font-size:36px;margin-bottom:16px;">&#x1F6E1;</div>
+      <div style="font-size:10px;letter-spacing:0.35em;color:#7a6128;text-transform:uppercase;margin-bottom:12px;">Outer Haven</div>
+      <div style="font-size:18px;color:#f0d080;margin-bottom:28px;">Speak the Passphrase</div>
+      <input id="pw" type="password" placeholder="Enter passphrase" autofocus style="width:100%;padding:10px 14px;background:#0d0a06;border:1px solid #7a6128;color:#c9a84c;font-size:15px;font-family:Georgia,serif;text-align:center;letter-spacing:0.1em;outline:none;margin-bottom:12px;box-sizing:border-box;" />
+      <div id="pe" style="color:#8b1a1a;font-size:12px;min-height:18px;margin-bottom:10px;letter-spacing:0.05em;"></div>
+      <button onclick="checkPw()" style="width:100%;padding:10px;background:transparent;border:1px solid #c9a84c;color:#c9a84c;font-family:Georgia,serif;font-size:13px;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;">Enter</button>
+    </div>
+  </div>
   <div class="scroll">
     <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
     <div class="guild-name">&#x2694; &nbsp; Outer Haven &nbsp; &#x2694;</div>

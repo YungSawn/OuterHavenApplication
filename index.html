@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guild Officer Application - Outer Haven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --gold: #c9a84c; --gold-light: #f0d080; --gold-dim: #7a6128; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0804; font-family: 'Crimson Pro', Georgia, serif; color: #d4bc87; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; background-image: radial-gradient(ellipse at 20% 20%, rgba(60,30,5,0.5) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(40,15,5,0.4) 0%, transparent 60%); }
+    .scroll { max-width: 720px; width: 100%; background: linear-gradient(160deg, #1e1508 0%, #130e05 40%, #1a1108 100%); border: 1px solid var(--gold-dim); box-shadow: 0 0 0 4px #0a0804, 0 0 0 5px var(--gold-dim), 0 0 60px rgba(201,168,76,0.1), inset 0 0 80px rgba(0,0,0,0.6); padding: 56px 60px; position: relative; animation: fadeIn 1.2s ease both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .scroll::before, .scroll::after { content: ''; display: block; height: 3px; background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent); margin: 0 -60px; }
+    .scroll::before { margin-bottom: 40px; }
+    .scroll::after { margin-top: 40px; }
+    .corner { position: absolute; width: 36px; height: 36px; border-color: var(--gold-dim); border-style: solid; opacity: 0.7; }
+    .corner.tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
+    .corner.tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; }
+    .corner.br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+    .guild-name { font-family: 'Cinzel Decorative', serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold-dim); text-align: center; margin-bottom: 18px; }
+    .divider { text-align: center; color: var(--gold-dim); font-size: 18px; letter-spacing: 0.5em; margin: 18px 0; opacity: 0.6; }
+    h1 { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 600; color: var(--gold-light); text-align: center; letter-spacing: 0.08em; line-height: 1.3; text-shadow: 0 0 30px rgba(240,208,128,0.3); margin-bottom: 6px; }
+    .subtitle { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold-dim); text-align: center; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 36px; }
+    .seal { text-align: center; font-size: 32px; margin: 10px 0 28px; filter: drop-shadow(0 0 8px rgba(201,168,76,0.4)); }
+    p { font-size: 17px; font-weight: 300; line-height: 1.85; color: #c8ab78; margin-bottom: 20px; }
+    p:first-of-type::first-letter { font-family: 'Cinzel Decorative', serif; font-size: 52px; float: left; line-height: 0.8; margin: 6px 10px 0 0; color: var(--gold); text-shadow: 0 0 20px rgba(201,168,76,0.5); }
+    em { font-style: italic; color: var(--gold-light); }
+    .traits { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 28px 0; }
+    .trait { border: 1px solid var(--gold-dim); padding: 14px 12px; text-align: center; background: rgba(201,168,76,0.03); transition: background 0.3s; }
+    .trait:hover { background: rgba(201,168,76,0.07); }
+    .trait-icon { font-size: 22px; display: block; margin-bottom: 6px; }
+    .trait-title { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 4px; }
+    .trait-desc { font-size: 12px; color: #9a8460; line-height: 1.4; }
+    .closing { border-top: 1px solid var(--gold-dim); padding-top: 24px; margin-top: 28px; }
+    .signature { text-align: right; margin-top: 28px; }
+    .signature .name { font-family: 'Cinzel Decorative', serif; font-size: 15px; color: var(--gold); letter-spacing: 0.05em; }
+    .signature .title-line { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.25em; color: var(--gold-dim); text-transform: uppercase; margin-top: 4px; }
+    @media (max-width: 520px) { .scroll { padding: 36px 28px; } .scroll::before, .scroll::after { margin: 0 -28px; } .traits { grid-template-columns: 1fr; } h1 { font-size: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="scroll">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="guild-name">&#9876; &nbsp; Outer Haven &nbsp; &#9876;</div>
+    <div class="divider">&mdash; &#10022; &mdash;</div>
+    <h1>Petition for the Rank of Officer</h1>
+    <div class="subtitle">Submitted in Honour &amp; Humility</div>
+    <div class="seal">&#128737;&#65039;</div>
+    <p>To our esteemed Guild Master and the assembled officers of this brotherhood &mdash; I write not out of ambition, but out of devotion. For as long as I have carried this guild's banner, I have done so without condition, without falter, and without question. It is in that same spirit that I now put forth this petition, trusting it to be judged on the merit of my deeds rather than the boldness of my words.</p>
+    <div class="traits">
+      <div class="trait"><span class="trait-icon">&#127749;</span><span class="trait-title">Ever Present</span><span class="trait-desc">Online at dawn, at dusk, and through the deep hours of the night when the realms grow quiet.</span></div>
+      <div class="trait"><span class="trait-icon">&#129309;</span><span class="trait-title">Steadfast Aid</span><span class="trait-desc">No dungeon request refused, no crafting favour ignored, no guildmate left stranded.</span></div>
+      <div class="trait"><span class="trait-icon">&#128081;</span><span class="trait-title">Sworn Loyalty</span><span class="trait-desc">My allegiance to our Guild Master is not earned &mdash; it is <em>given</em>, wholly and without condition.</span></div>
+    </div>
+    <p>My presence in these halls has been <em>constant</em>. When members call for aid &mdash; whether it be a struggling newcomer lost in their first raid, a veteran seeking a capable partner for a gruelling world boss, or simply a soul in need of advice &mdash; I answer. Not occasionally. Not when convenient. <em>Always.</em> I have made it my purpose to ensure that no member of this guild ever feels unseen or unsupported.</p>
+    <p>Yet beyond service to our members, there is a deeper truth I would lay before you: my loyalty to our Guild Master is not the loyalty of convenience or calculation. It is <em>absolute</em>. Their vision for this guild is my vision. Their commands are my commands. Should they decree we charge into the maw of oblivion itself, I would be the first through the gate &mdash; and the last to leave. This is not blind faith; it is earned reverence for a leader who has built something worth protecting.</p>
+    <div class="closing"><p>I do not seek the rank of Officer for power or prestige. I seek it so that I may serve more effectively &mdash; so that the trust our members place in this guild, and the trust I place in our leader, may be honoured with the full weight of my commitment. I am already an officer in deed. I humbly ask only to be one in title.</p></div>
+    <div class="signature"><div class="name">Peak / Klaw</div><div class="title-line">Loyal Servant of Outer Haven</div></div>
+  </div>
+</body>
+</html>

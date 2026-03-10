@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guild Officer Application - Outer Haven</title>
+  <title>Guild Officer Application</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root { --gold: #c9a84c; --gold-light: #f0d080; --gold-dim: #7a6128; }
@@ -12,13 +12,10 @@
     .scroll { max-width: 720px; width: 100%; background: linear-gradient(160deg, #1e1508 0%, #130e05 40%, #1a1108 100%); border: 1px solid var(--gold-dim); box-shadow: 0 0 0 4px #0a0804, 0 0 0 5px var(--gold-dim), 0 0 60px rgba(201,168,76,0.1), inset 0 0 80px rgba(0,0,0,0.6); padding: 56px 60px; position: relative; animation: fadeIn 1.2s ease both; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     .scroll::before, .scroll::after { content: ''; display: block; height: 3px; background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent); margin: 0 -60px; }
-    .scroll::before { margin-bottom: 40px; }
-    .scroll::after { margin-top: 40px; }
+    .scroll::before { margin-bottom: 40px; } .scroll::after { margin-top: 40px; }
     .corner { position: absolute; width: 36px; height: 36px; border-color: var(--gold-dim); border-style: solid; opacity: 0.7; }
-    .corner.tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
-    .corner.tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
-    .corner.bl { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; }
-    .corner.br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+    .corner.tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; } .corner.tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; } .corner.br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
     .guild-name { font-family: 'Cinzel Decorative', serif; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold-dim); text-align: center; margin-bottom: 18px; }
     .divider { text-align: center; color: var(--gold-dim); font-size: 18px; letter-spacing: 0.5em; margin: 18px 0; opacity: 0.6; }
     h1 { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 600; color: var(--gold-light); text-align: center; letter-spacing: 0.08em; line-height: 1.3; text-shadow: 0 0 30px rgba(240,208,128,0.3); margin-bottom: 6px; }
@@ -41,22 +38,35 @@
   </style>
 </head>
 <body>
+  <script>
+    (function() {
+      var c = 'OuterHaven', k = 'oh_auth';
+      if (sessionStorage.getItem(k) === c) return;
+      document.addEventListener('DOMContentLoaded', function() { document.body.style.display = 'none'; });
+      var o = document.createElement('div');
+      o.style.cssText = 'position:fixed;inset:0;background:#0a0804;display:flex;align-items:center;justify-content:center;z-index:9999;font-family:Georgia,serif;';
+      o.innerHTML = '<div style="text-align:center;border:1px solid #7a6128;padding:48px 56px;background:linear-gradient(160deg,#1e1508,#130e05);box-shadow:0 0 0 4px #0a0804,0 0 0 5px #7a6128,0 0 60px rgba(201,168,76,0.1);max-width:360px;width:90%;"><div style="font-size:36px;margin-bottom:16px;">&#x1F6E1;</div><div style="font-size:10px;letter-spacing:0.35em;color:#7a6128;text-transform:uppercase;margin-bottom:12px;">Outer Haven</div><div style="font-size:18px;color:#f0d080;margin-bottom:28px;">Speak the Passphrase</div><input id="pw" type="password" placeholder="Enter passphrase" style="width:100%;padding:10px 14px;background:#0d0a06;border:1px solid #7a6128;color:#c9a84c;font-size:15px;text-align:center;outline:none;margin-bottom:12px;box-sizing:border-box;" /><div id="pe" style="color:#8b1a1a;font-size:12px;min-height:18px;margin-bottom:10px;"></div><button onclick="cp()" style="width:100%;padding:10px;background:transparent;border:1px solid #c9a84c;color:#c9a84c;font-size:13px;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;">Enter</button></div>';
+      document.body.appendChild(o);
+      document.getElementById('pw').addEventListener('keydown', function(e){ if(e.key==='Enter') cp(); });
+      window.cp = function() { var v=document.getElementById('pw').value; if(v===c){sessionStorage.setItem(k,c);o.remove();document.body.style.display='';}else{document.getElementById('pe').textContent='The gates remain sealed. Try again.';document.getElementById('pw').value='';document.getElementById('pw').focus();} };
+    })();
+  </script>
   <div class="scroll">
     <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-    <div class="guild-name">&#9876; &nbsp; Outer Haven &nbsp; &#9876;</div>
-    <div class="divider">&mdash; &#10022; &mdash;</div>
+    <div class="guild-name">&#x2694; &nbsp; Outer Haven &nbsp; &#x2694;</div>
+    <div class="divider">&#8212; &#x2726; &#8212;</div>
     <h1>Petition for the Rank of Officer</h1>
     <div class="subtitle">Submitted in Honour &amp; Humility</div>
-    <div class="seal">&#128737;&#65039;</div>
-    <p>To our esteemed Guild Master and the assembled officers of this brotherhood &mdash; I write not out of ambition, but out of devotion. For as long as I have carried this guild's banner, I have done so without condition, without falter, and without question. It is in that same spirit that I now put forth this petition, trusting it to be judged on the merit of my deeds rather than the boldness of my words.</p>
+    <div class="seal">&#x1F6E1;</div>
+    <p>To our esteemed Guild Master and the assembled officers of this brotherhood &#8212; I write not out of ambition, but out of devotion. For as long as I have carried this guild&#39;s banner, I have done so without condition, without falter, and without question. It is in that same spirit that I now put forth this petition, trusting it to be judged on the merit of my deeds rather than the boldness of my words.</p>
     <div class="traits">
-      <div class="trait"><span class="trait-icon">&#127749;</span><span class="trait-title">Ever Present</span><span class="trait-desc">Online at dawn, at dusk, and through the deep hours of the night when the realms grow quiet.</span></div>
-      <div class="trait"><span class="trait-icon">&#129309;</span><span class="trait-title">Steadfast Aid</span><span class="trait-desc">No dungeon request refused, no crafting favour ignored, no guildmate left stranded.</span></div>
-      <div class="trait"><span class="trait-icon">&#128081;</span><span class="trait-title">Sworn Loyalty</span><span class="trait-desc">My allegiance to our Guild Master is not earned &mdash; it is <em>given</em>, wholly and without condition.</span></div>
+      <div class="trait"><span class="trait-icon">&#x1F305;</span><span class="trait-title">Ever Present</span><span class="trait-desc">Online at dawn, at dusk, and through the deep hours of the night when the realms grow quiet.</span></div>
+      <div class="trait"><span class="trait-icon">&#x1F91D;</span><span class="trait-title">Steadfast Aid</span><span class="trait-desc">No dungeon request refused, no crafting favour ignored, no guildmate left stranded.</span></div>
+      <div class="trait"><span class="trait-icon">&#x1F451;</span><span class="trait-title">Sworn Loyalty</span><span class="trait-desc">My allegiance to our Guild Master is not earned &#8212; it is <em>given</em>, wholly and without condition.</span></div>
     </div>
-    <p>My presence in these halls has been <em>constant</em>. When members call for aid &mdash; whether it be a struggling newcomer lost in their first raid, a veteran seeking a capable partner for a gruelling world boss, or simply a soul in need of advice &mdash; I answer. Not occasionally. Not when convenient. <em>Always.</em> I have made it my purpose to ensure that no member of this guild ever feels unseen or unsupported.</p>
-    <p>Yet beyond service to our members, there is a deeper truth I would lay before you: my loyalty to our Guild Master is not the loyalty of convenience or calculation. It is <em>absolute</em>. Their vision for this guild is my vision. Their commands are my commands. Should they decree we charge into the maw of oblivion itself, I would be the first through the gate &mdash; and the last to leave. This is not blind faith; it is earned reverence for a leader who has built something worth protecting.</p>
-    <div class="closing"><p>I do not seek the rank of Officer for power or prestige. I seek it so that I may serve more effectively &mdash; so that the trust our members place in this guild, and the trust I place in our leader, may be honoured with the full weight of my commitment. I am already an officer in deed. I humbly ask only to be one in title.</p></div>
+    <p>My presence in these halls has been <em>constant</em>. When members call for aid &#8212; whether it be a struggling newcomer lost in their first raid, a veteran seeking a capable partner for a gruelling world boss, or simply a soul in need of advice &#8212; I answer. Not occasionally. Not when convenient. <em>Always.</em> I have made it my purpose to ensure that no member of this guild ever feels unseen or unsupported.</p>
+    <p>Yet beyond service to our members, there is a deeper truth I would lay before you: my loyalty to our Guild Master is not the loyalty of convenience or calculation. It is <em>absolute</em>. Their vision for this guild is my vision. Their commands are my commands. Should they decree we charge into the maw of oblivion itself, I would be the first through the gate &#8212; and the last to leave.</p>
+    <div class="closing"><p>I do not seek the rank of Officer for power or prestige. I seek it so that I may serve more effectively &#8212; so that the trust our members place in this guild, and the trust I place in our leader, may be honoured with the full weight of my commitment. I am already an officer in deed. I humbly ask only to be one in title.</p></div>
     <div class="signature"><div class="name">Peak / Klaw</div><div class="title-line">Loyal Servant of Outer Haven</div></div>
   </div>
 </body>
